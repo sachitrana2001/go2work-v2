@@ -5,13 +5,11 @@ import { Search, MapPin } from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Select from "react-select"; // Import react-select
-import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const [cities, setCities] = useState([]);
   const [location, setLocation] = useState<string>("");
   const [job, setJob] = useState<string>("");
-  const router = useRouter();
   const fetchCities = async (query: string) => {
     try {
       const response = await fetch(
