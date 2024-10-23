@@ -34,7 +34,7 @@ const PopularRoles = () => {
               href={`https://go2work.com/jobseeker?role=${role}&&location=`}
             >
               {role}
-              <ChevronRight />
+              <ChevronRight  className="animate-bounce"/>
             </Link>
           ))}
         </div>

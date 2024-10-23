@@ -1,33 +1,44 @@
-// HeroSection.jsx
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Search, MapPin } from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import Select from "react-select"; // Import react-select
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const [cities, setCities] = useState([]);
-  const [location, setLocation] = useState("");
-
+  const [location, setLocation] = useState<string>("");
+  const [job, setJob] = useState<string>("");
+  const router = useRouter();
   const fetchCities = async (query: string) => {
     try {
       const response = await fetch(
         `https://api.go2work.com/v1/cities/suggestions?q=${query}`
       );
       const data = await response.json();
-      setCities(data);
+      const cityOptions = data.cities.map((city: any) => ({
+        value: city._id,
+        label: `${city.name}, ${city.state}` || city.name,
+      }));
+      setCities(cityOptions);
     } catch (error) {
       console.error("Error fetching cities:", error);
     }
   };
 
+  const handleSearch = () => {
+    window.location.href = `https://go2work.com//jobseeker?role=${
+      job || ""
+    }&&location=${location || ""}`;
+  };
   useEffect(() => {
     if (location) {
       fetchCities(location);
     }
   }, [location]);
-
+  console.log(location, job);
   return (
     <section
       className="relative flex flex-col justify-start items-center text-center bg-cover bg-center h-[calc(100vh-5rem)] md:h-[762px]"
@@ -60,33 +71,61 @@ const HeroSection = () => {
           src="/assets/LandingBottomEllipse.svg"
         />
       </div>
-      <div className="relative flex flex-col justify-center items-start z-10 mt-20 md:mt-40">
+      <div className="relative flex flex-col justify-center items-start mx-5 z-10 mt-20 md:mt-40">
         <h2 className="text-4xl md:text-5xl font-bold text-black mb-20">
-          Your Next <span className="text-blue-600">Career</span> Move is
-          Waiting...
+          Navigating Your Job Search with{" "}
+          <span className="text-blue-600">go2work</span>
         </h2>
-        <div className="flex flex-col md:flex-row gap-4 md:max-w-3xl mx-auto  bg-black bg-opacity-30 p-8  rounded-lg">
-          <div className="relative flex items-center gap-2">
+        <div className="w-full flex mx-auto flex-col justify-between  md:flex-row gap-4  bg-black bg-opacity-30 p-8  rounded-lg">
+          <div className="relative flex items-center flex-1 gap-2">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Search for Jobs"
-              className="pl-10 active:ring-blue-700 focus-visible:ring-blue-700"
+              className="pl-10 active:ring-blue-600 focus-visible:ring-blue-600"
+              onChange={(e) => setJob(e.target.value)}
             />
           </div>
-          <div className="relative flex items-center gap-2">
-            <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="text"
+          <div className="relative flex items-center flex-1 gap-2">
+            <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 text-muted-foreground" />
+            <Select
+              className="w-full"
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  paddingLeft: "1.75rem",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // backgroundColor: "transparent",
+                  // borderColor: "transparent",
+                  // "&:hover": {
+                  //   borderColor: "transparent",
+                  // },
+                  // "&:focus": {
+                  //   borderColor: "transparent",
+                  // },
+                }),
+                placeholder: (baseStyles, state) => ({
+                  ...baseStyles,
+                  display: 'flex',
+                  fontSize: "14px",
+                })
+              }}
+              options={cities} // Options from API
+              value={cities.find((city: any) => city.value === location)} // Set initial value
+              onInputChange={(query: string) => setLocation(query)} // Update query as input changes
+              onChange={(selectedOption: any) => {
+                console.log(selectedOption);
+                setLocation(selectedOption.label);
+              }} // Handle option select
               placeholder="Select location"
-              className="pl-10 active:ring-blue-700 focus-visible:ring-blue-700"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)} // Update location state
             />
           </div>
           <Button
             variant="default"
             className="bg-blue-600 text-white hover:bg-blue-700 hover:scale-105"
+            onClick={handleSearch}
           >
             Search Jobs
           </Button>

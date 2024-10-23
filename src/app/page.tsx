@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button"
 import HeroSection from "@/components/landing/HeroSection"
 import PopularCategories from "@/components/landing/PopularCategories"
 import PopularRoles from "@/components/landing/PopularRoles"
 import HowItWorks from "@/components/landing/HowItWorks"
+import DiscoverEmployment from "@/components/landing/DiscoverEmployment"
+import FindYourBest from "@/components/landing/FindYourBest"
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
        <HeroSection/>
        <PopularCategories/>
        <PopularRoles/>
+       <DiscoverEmployment/>
+       <FindYourBest/>
        <HowItWorks/>
     </main>
   )

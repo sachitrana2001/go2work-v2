@@ -1,12 +1,12 @@
 // PopularCategories.jsx
 import Image from "next/image";
-import { Card, CardContent } from "../ui/card";
+import { Card } from "../ui/card";
 import { CATEGORIES } from "@/constants";
 
 const PopularCategories = () => {
   return (
     <section className="popular-roles-wrapper w-full px-5 md:px-20">
-      <h3 className=" text-5xl font-semibold text-gray-900  md:text-5xl mb-16 md:text-center">
+      <h3 className=" text-[2.5rem] font-semibold text-gray-900  md:text-5xl mb-8 md:mb-16 md:text-center">
         Popular <br className="md:hidden" />
         Categories
       </h3>
