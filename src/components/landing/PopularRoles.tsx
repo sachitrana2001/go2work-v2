@@ -28,13 +28,13 @@ const PopularRoles = () => {
         <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 md:gap-10 md:w-2/3">
           {ROLES.map((role) => (
             <Link
-              key={role}
-              className="shadow-xs relative whitespace-pre-wrap flex justify-between h-32 cursor-pointer items-center gap-2 rounded-bl-3xl rounded-br-3xl rounded-tr-3xl bg-background py-6 px-10 text-2xl font-semibold hover:shadow-sm "
-              href={`https://go2work.com/jobseeker?role=${role}&&location=`}
-            >
-              {role}
-              <ChevronRight  className="animate-bounce"/>
-            </Link>
+            key={role}
+            className="shadow-xs relative whitespace-pre-wrap flex justify-between h-32 cursor-pointer items-center gap-2 rounded-bl-3xl rounded-br-3xl rounded-tr-3xl bg-background py-6 px-10 text-2xl font-semibold transition-transform duration-300 ease-out hover:scale-105 hover:shadow-lg"
+            href={`https://go2work.com/jobseeker?role=${role}&&location=`}
+          >
+            {role}
+            <ChevronRight className="transition-transform duration-300 ease-out hover:translate-x-2" />
+          </Link>          
           ))}
         </div>
       </div>

@@ -4,12 +4,14 @@ import Image from "next/image";
 import { Search, MapPin } from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import Select from "react-select"; // Import react-select
+import Select from "react-select";
 
 const HeroSection = () => {
-  const [cities, setCities] = useState([]);
+  const [locationOptions, setLocationOptions] = useState([]);
   const [location, setLocation] = useState<string>("");
   const [job, setJob] = useState<string>("");
+  const [addQuery, setAddQuery] = useState<string>("");
+
   const fetchCities = async (query: string) => {
     try {
       const response = await fetch(
@@ -20,23 +22,24 @@ const HeroSection = () => {
         value: city._id,
         label: `${city.name}, ${city.state}` || city.name,
       }));
-      setCities(cityOptions);
+      setLocationOptions(cityOptions);
     } catch (error) {
       console.error("Error fetching cities:", error);
     }
   };
 
   const handleSearch = () => {
-    window.location.href = `https://go2work.com//jobseeker?role=${
+    window.location.href = `https://go2work.com/jobseeker?role=${
       job || ""
-    }&&location=${location || ""}`;
+    }&location=${location || ""}`;
   };
+
   useEffect(() => {
-    if (location) {
-      fetchCities(location);
+    if (addQuery) {
+      fetchCities(addQuery);
     }
-  }, [location]);
-  console.log(location, job);
+  }, [addQuery]);
+
   return (
     <section
       className="relative flex flex-col justify-start items-center text-center bg-cover bg-center h-[calc(100vh-5rem)] md:h-[762px]"
@@ -46,6 +49,7 @@ const HeroSection = () => {
         backgroundPosition: "center",
       }}
     >
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-600/75 via-blue-600/25 to-transparent" />
       <div className="hidden md:flex absolute inset-0">
         <Image
           width={100}
@@ -61,22 +65,17 @@ const HeroSection = () => {
           className="absolute -top-20 -z-10 -left-10 w-1/6 object-contain"
           src="/assets/LandingTopEllipse.svg"
         />
-        <Image
-          width={100}
-          height={100}
-          alt="LandingBottomEllipse"
-          className="absolute -bottom-20 -z-10 opacity-40 -right-10 w-1/5 object-contain"
-          src="/assets/LandingBottomEllipse.svg"
-        />
       </div>
       <div className="relative flex flex-col justify-center items-start mx-5 z-10 mt-20 md:mt-40">
-        <h2 className="text-4xl md:text-5xl font-bold text-black mb-20">
-          Navigating Your Job Search with{" "}
-          <span className="text-blue-600">go2work</span>
+        <h2 className="text-4xl md:text-5xl font-semibold text-black mb-20">
+          Navigating Your Job Search With{" "}
+          <span className="text-blue-600">
+            go<span className="text-blue-950">2</span>work
+          </span>
         </h2>
-        <div className="w-full flex mx-auto flex-col justify-between  md:flex-row gap-4  bg-black bg-opacity-30 p-8  rounded-lg">
+        <div className="w-full flex mx-auto flex-col justify-between md:flex-row gap-4 bg-black bg-opacity-30 p-8 rounded-lg">
           <div className="relative flex items-center flex-1 gap-2">
-            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2" />
             <Input
               type="text"
               placeholder="Search for Jobs"
@@ -85,44 +84,53 @@ const HeroSection = () => {
             />
           </div>
           <div className="relative flex items-center flex-1 gap-2">
-            <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 text-muted-foreground" />
+            <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10" />
             <Select
               className="w-full"
               styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  paddingLeft: "1.75rem",
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  // backgroundColor: "transparent",
-                  // borderColor: "transparent",
-                  // "&:hover": {
-                  //   borderColor: "transparent",
-                  // },
-                  // "&:focus": {
-                  //   borderColor: "transparent",
-                  // },
+                container: (base) => ({
+                  ...base,
+                  width: "100%",
                 }),
-                placeholder: (baseStyles, state) => ({
-                  ...baseStyles,
-                  display: 'flex',
+                control: (base) => ({
+                  ...base,
+                  paddingLeft: "1.75rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }),
+                placeholder: (base) => ({
+                  ...base,
+                  display: "flex",
                   fontSize: "14px",
-                })
+                }),
+                option: (base) => ({
+                  ...base,
+                  display: "flex",
+                  fontSize: "14px",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                }),
+                valueContainer: (base) => ({
+                  ...base,
+                  display: "flex",
+                  fontSize: "14px",
+                }),
               }}
-              options={cities} // Options from API
-              value={cities.find((city: any) => city.value === location)} // Set initial value
-              onInputChange={(query: string) => setLocation(query)} // Update query as input changes
+              options={locationOptions}
+              value={locationOptions.find(
+                (city: any) => city.label === location
+              )}
+              onInputChange={(query: string) => setAddQuery(query)}
               onChange={(selectedOption: any) => {
-                console.log(selectedOption);
                 setLocation(selectedOption.label);
-              }} // Handle option select
+              }}
               placeholder="Select location"
             />
           </div>
           <Button
             variant="default"
-            className="bg-blue-600 text-white hover:bg-blue-700 hover:scale-105"
+            className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             onClick={handleSearch}
           >
             Search Jobs

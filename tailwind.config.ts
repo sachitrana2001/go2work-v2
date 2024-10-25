@@ -55,7 +55,16 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		  keyframes: {
+			float: {
+			  '0%, 100%': { transform: 'translateY(0)' },
+			  '50%': { transform: 'translateY(-20px)' }, // Moves the image up by 10px at midpoint
+			},
+		  },
+		  animation: {
+			float: 'float 5s ease-in-out infinite', // Adjust time and easing for smooth effect
+		  },
   	}
   },
   plugins: [require("tailwindcss-animate")],
