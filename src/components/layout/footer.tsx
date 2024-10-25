@@ -109,7 +109,7 @@ export default function Footer() {
             <p className="text-sm mb-4 md:mb-0">&copy; 2024 go2work</p>
             <div className="flex space-x-4 mb-4 md:mb-0">
               <Link
-                href="https://apps.apple.com/us/app/go2work"
+                href="https://apps.apple.com/us/app/go2work-app/id1659693434"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -121,7 +121,7 @@ export default function Footer() {
                 />
               </Link>
               <Link
-                href="https://play.google.com/store/apps/details?id=com.go2work"
+                href="https://play.google.com/store/apps/details?id=com.go2work.app"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -138,7 +138,7 @@ export default function Footer() {
                 href="https://facebook.com/go2workapps"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-900 hover:text-blue-700"
+                className="text-blue-900 hover:text-blue-700 transform transition-transform duration-200 hover:scale-110"
               >
                 <Facebook size={24} />
                 <span className="sr-only">Facebook</span>
@@ -147,7 +147,7 @@ export default function Footer() {
                 href="https://instagram.com/go2workapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-900 hover:text-blue-700"
+                className="text-blue-900 hover:text-blue-700 transform transition-transform duration-200 hover:scale-110"
               >
                 <Instagram size={24} />
                 <span className="sr-only">Instagram</span>
@@ -156,7 +156,7 @@ export default function Footer() {
                 href="https://twitter.com/go2workapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-900 hover:text-blue-700"
+                className="text-blue-900 hover:text-blue-700 transform transition-transform duration-200 hover:scale-110"
               >
                 <Twitter size={24} />
                 <span className="sr-only">Twitter</span>
@@ -165,7 +165,7 @@ export default function Footer() {
                 href="https://linkedin.com/company/go2workapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-900 hover:text-blue-700"
+                className="text-blue-900 hover:text-blue-700 transform transition-transform duration-200 hover:scale-110"
               >
                 <Linkedin size={24} />
                 <span className="sr-only">LinkedIn</span>
@@ -174,7 +174,7 @@ export default function Footer() {
                 href="https://www.youtube.com/@go2workapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-900 hover:text-blue-700"
+                className="text-blue-900 hover:text-blue-700 transform transition-transform duration-200 hover:scale-110"
               >
                 <Youtube size={24} />
                 <span className="sr-only">Youtube</span>

@@ -190,7 +190,7 @@ export default function Navbar() {
                     </div>
                     <div className="flex space-x-4 mb-4 md:mb-0">
                       <Link
-                        href="https://apps.apple.com/us/app/go2work"
+                        href="https://apps.apple.com/us/app/go2work-app/id1659693434"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -202,7 +202,7 @@ export default function Navbar() {
                         />
                       </Link>
                       <Link
-                        href="https://play.google.com/store/apps/details?id=com.go2work"
+                        href="https://play.google.com/store/apps/details?id=com.go2work.app"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

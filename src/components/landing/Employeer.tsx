@@ -18,7 +18,7 @@ const EmployerHeroSection = () => {
       {/* Content */}
       <div className="flex w-full flex-col justify-between items-center gap-24 p-10 md:flex-row md:gap-20 md:p-20">
         {/* Left Text Section */}
-        <div className="max-w-xl max-sm:mt-16">
+        <div className="max-w-xl">
           <h2 className="text-left text-4xl font-semibold md:text-5xl ">
             Looking to hire the best and brightest minds?
           </h2>

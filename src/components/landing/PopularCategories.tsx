@@ -7,8 +7,8 @@ import Link from "next/link";
 const PopularCategories = () => {
   return (
     <section className="popular-roles-wrapper w-full px-5 md:px-20">
-      <h3 className="text-[2.5rem] font-semibold text-gray-900 md:text-5xl mb-8 md:mb-16 md:text-center">
-        Popular <br className="md:hidden" />
+      <h3 className="text-[2.5rem] font-semibold text-gray-900 md:text-5xl mb-8 md:mb-16 text-center">
+        Popular
         Categories
       </h3>
       <div className="flex flex-wrap justify-center gap-5">
